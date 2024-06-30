@@ -10,8 +10,9 @@ def get_user_input(args):
         args.device = 'cpu'
 
     dataset_code = {'r': 'redd_lf', 'u': 'uk_dale'}
-    args.dataset_code = dataset_code[input(
-        'Input r for REDD, u for UK_DALE: ')]
+    # args.dataset_code = dataset_code[input(
+    #     'Input r for REDD, u for UK_DALE: ')]
+    args.dataset_code = "uk_dale"
 
     if args.dataset_code == 'redd_lf':
         app_dict = {
@@ -31,10 +32,12 @@ def get_user_input(args):
             'm': ['microwave'],
             'd': ['dishwasher'],
         }
-        args.appliance_names = app_dict[input(
-            'Input k, f, w, m or d for target appliance: ')]
+        args.appliance_names = ["kettle"]
+        # args.appliance_names = app_dict[input(
+        #     'Input k, f, w, m or d for target appliance: ')]
 
-    args.num_epochs = int(input('Input training epochs: '))
+    #args.num_epochs = int(input('Input training epochs: '))
+    args.num_epochs = 50
 
 
 def set_template(args):

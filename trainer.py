@@ -2,7 +2,6 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 import torch.nn.functional as F
-from torch.autograd.gradcheck import zero_gradients
 from tqdm import tqdm
 
 import os
@@ -183,13 +182,17 @@ class Trainer(metaclass=ABCMeta):
                 logits_status = self.compute_status(logits_energy)
                 logits_energy = logits_energy * logits_status
 
-                rel_err, abs_err = relative_absolute_error(logits_energy.detach(
-                ).cpu().numpy().squeeze(), labels_energy.detach().cpu().numpy().squeeze())
+                rel_err, abs_err = relative_absolute_error(
+                    logits_energy.detach().cpu().numpy().squeeze(), 
+                    labels_energy.detach().cpu().numpy().squeeze())
+                
                 relative_errors.append(rel_err.tolist())
                 absolute_errors.append(abs_err.tolist())
 
-                acc, precision, recall, f1 = acc_precision_recall_f1_score(logits_status.detach(
-                ).cpu().numpy().squeeze(), status.detach().cpu().numpy().squeeze())
+                acc, precision, recall, f1 = acc_precision_recall_f1_score(
+                    logits_status.detach().cpu().numpy().squeeze(), 
+                    status.detach().cpu().numpy().squeeze())
+                
                 acc_values.append(acc.tolist())
                 precision_values.append(precision.tolist())
                 recall_values.append(recall.tolist())

@@ -91,7 +91,7 @@ parser.add_argument('--model_size', type=str, default='gru',
 parser.add_argument('--output_size', type=int, default=1)
 parser.add_argument('--drop_out', type=float, default=0.1)
 parser.add_argument('--mask_prob', type=float, default=0.25)
-parser.add_argument('--device', type=str, default='cpu',
+parser.add_argument('--device', type=str, default='gpu',
                     choices=['cpu', 'cuda'])
 parser.add_argument('--optimizer', type=str,
                     default='adam', choices=['sgd', 'adam', 'adamw'])
